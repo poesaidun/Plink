@@ -11,10 +11,10 @@
     <title>Plink</title>
     <link rel="icon" href="plink.png">
     <link rel="apple-touch-icon" href="plink.png">
-    <link rel="manifest" href="manifest.json?v=20260515-11">
-    <script src="plink-user.js?v=20260515-11"></script>
-    <script src="plink-update.js?v=20260515-11"></script>
-    <link rel="stylesheet" href="styles.css?v=20260515-11">
+    <link rel="manifest" href="manifest.json?v=20260516-01">
+    <script src="plink-user.js?v=20260516-01"></script>
+    <script src="plink-update.js?v=20260516-01"></script>
+    <link rel="stylesheet" href="styles.css?v=20260516-01">
   </head>
   <body>
     <div class="app" id="app">
@@ -62,6 +62,9 @@
             </button>
             <button class="icon-button" id="soundToggleButton" title="Toggle sound" aria-label="Toggle sound" type="button">
               <span data-icon="volume-2"></span>
+            </button>
+            <button class="icon-button danger" id="resetDataButton" title="Reset Plink data" aria-label="Reset Plink data" type="button">
+              <span data-icon="trash"></span>
             </button>
             <div class="add-menu" id="universalAdd" data-tour-target="add">
               <button class="primary icon-text" id="universalAddButton" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="universalAddMenu">
@@ -322,6 +325,6 @@
 
     <div class="toast-host" id="toastHost" aria-live="polite" aria-atomic="true"></div>
 
-    <script src="app.js?v=20260515-11" defer></script>
+    <script src="app.js?v=20260516-01" defer></script>
   </body>
 </html>

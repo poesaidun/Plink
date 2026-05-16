@@ -1,4 +1,4 @@
-const CACHE_NAME = "plink-shell-20260515-11";
+const CACHE_NAME = "plink-shell-20260516-01";
 const CORE_ASSETS = [
   "./",
   "./index.html",

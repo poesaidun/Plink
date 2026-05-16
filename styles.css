@@ -450,6 +450,30 @@ h3 {
   color: var(--red);
 }
 
+.icon-button.danger {
+  border-color: color-mix(in srgb, var(--red) 28%, var(--line));
+  color: var(--red);
+}
+
+.icon-button.danger:hover {
+  background: color-mix(in srgb, var(--red) 12%, var(--surface));
+  border-color: color-mix(in srgb, var(--red) 45%, var(--line));
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--red) 16%, transparent);
+}
+
+.primary.danger {
+  background: linear-gradient(135deg, var(--red), color-mix(in srgb, var(--red) 60%, var(--plink-pink)));
+  border-color: color-mix(in srgb, var(--red) 62%, var(--plink-pink));
+  box-shadow: 0 10px 26px color-mix(in srgb, var(--red) 18%, transparent);
+  color: #ffffff;
+}
+
+.primary.danger:hover {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--red) 85%, #000), var(--plink-pink));
+  border-color: color-mix(in srgb, var(--red) 50%, var(--plink-pink));
+  color: #ffffff;
+}
+
 .view {
   display: grid;
   gap: 18px;
@@ -1965,7 +1989,7 @@ button.stat:hover {
 
   .topbar-actions {
     display: grid;
-    grid-template-columns: repeat(4, minmax(42px, 1fr)) minmax(92px, 1.45fr);
+    grid-template-columns: repeat(5, minmax(42px, 1fr)) minmax(92px, 1.45fr);
     width: 100%;
     gap: 8px;
   }
@@ -2187,7 +2211,7 @@ button.stat:hover {
   }
 
   .topbar-actions {
-    grid-template-columns: repeat(4, minmax(40px, 1fr)) minmax(78px, 1.2fr);
+    grid-template-columns: repeat(5, minmax(40px, 1fr)) minmax(78px, 1.2fr);
   }
 
   .nav-item {

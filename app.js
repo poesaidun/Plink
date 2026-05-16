@@ -132,6 +132,7 @@ const els = {
   tourReplayButton: document.getElementById("tourReplayButton"),
   themeToggleButton: document.getElementById("themeToggleButton"),
   soundToggleButton: document.getElementById("soundToggleButton"),
+  resetDataButton: document.getElementById("resetDataButton"),
   universalAddButton: document.getElementById("universalAddButton"),
   universalAddMenu: document.getElementById("universalAddMenu"),
   courseDialog: document.getElementById("courseDialog"),
@@ -273,6 +274,7 @@ function bindEvents() {
   els.updateCheckButton?.addEventListener("click", openUpdateDialog);
   els.updateCheckAgainButton?.addEventListener("click", () => checkForUpdates());
   els.updateDownloadButton?.addEventListener("click", openUpdateDownload);
+  els.resetDataButton?.addEventListener("click", resetPlinkData);
 
   els.courseForm.addEventListener("submit", (event) => {
     if (event.submitter?.value === "cancel") return;
@@ -3074,6 +3076,34 @@ function exportData() {
   URL.revokeObjectURL(url);
 }
 
+async function resetPlinkData() {
+  const confirmed = await showConfirmDialog(
+    "Reset Plink data?",
+    "This clears courses, assignments, study sessions, quick notes, Canvas settings, and tutorial progress saved on this device. Export first if you want a backup.",
+    "Reset data",
+    "primary danger"
+  );
+  if (!confirmed) return;
+
+  const finalCheck = await showConfirmDialog(
+    "Start fresh?",
+    "Last check: Plink will restart with an empty planner on this device. This cannot be undone.",
+    "Start fresh",
+    "primary danger"
+  );
+  if (!finalCheck) return;
+
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem("plink-tour-complete");
+  sessionToken = "";
+  latestUpdateManifest = null;
+  state = loadState();
+  persist();
+  render();
+  playPlink("done");
+  toast("Plink reset. Clean slate.");
+}
+
 function activeAssignments() {
   return state.assignments.filter((item) => !isDone(item));
 }
@@ -3333,31 +3363,45 @@ if (existingToast) {
   setTimeout(() => node.remove(), 5200);
 }
 
-async function showConfirmDialog(title, message, confirmText = "Confirm") {
+async function showConfirmDialog(title, message, confirmText = "Confirm", actionClass = "primary") {
   return new Promise((resolve) => {
     document.getElementById("confirmTitle").textContent = title;
     document.getElementById("confirmMessage").textContent = message;
-    document.getElementById("confirmActionButton").textContent = confirmText;
+    const actionButton = document.getElementById("confirmActionButton");
+    actionButton.textContent = confirmText;
+    actionButton.className = actionClass;
 
     const dialog = document.getElementById("confirmDialog");
     const form = document.getElementById("confirmForm");
+    let settled = false;
+    let submitted = false;
 
     const cleanup = () => {
       form.removeEventListener("submit", handleSubmit);
+      dialog.removeEventListener("close", handleClose);
+    };
+
+    const finish = (confirmed) => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      resolve(confirmed);
     };
 
     const handleSubmit = (event) => {
       event.preventDefault();
-
-      const confirmed = event.submitter?.value === "confirm";
-
-      cleanup();
-      dialog.close();
-
-      resolve(confirmed);
+      submitted = event.submitter?.value === "confirm";
+      if (dialog.open) {
+        dialog.close();
+        return;
+      }
+      finish(submitted);
     };
 
+    const handleClose = () => finish(submitted);
+
     form.addEventListener("submit", handleSubmit);
+    dialog.addEventListener("close", handleClose);
 
     dialog.showModal();
   });

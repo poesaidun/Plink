@@ -1,11 +1,11 @@
 {
-  "version": "0.2.0",
+  "version": "0.2.1",
   "downloadUrl": "https://github.com/poesaidun/Plink/releases/latest/download/PlinkInstaller.exe",
   "notes": [
-    "iPhone-ready PWA shell.",
-    "Offline app loading for hosted installs.",
-    "Mobile layout polish.",
-    "Phase 1 update checking."
+    "Added a reset data button for clean local testing.",
+    "Reset now clears planner data, quick notes, saved Canvas settings, and tutorial completion.",
+    "Improved confirmation dialog behavior for chained safety prompts.",
+    "Refreshed app cache version so hosted/mobile installs pick up the update."
   ],
-  "releasedAt": "2026-05-15"
+  "releasedAt": "2026-05-16"
 }
