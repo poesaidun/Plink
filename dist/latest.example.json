@@ -1,0 +1,10 @@
+{
+  "version": "0.1.1",
+  "downloadUrl": "https://example.com/PlinkInstaller.exe",
+  "notes": [
+    "New guided tutorial highlights.",
+    "A calmer update checker.",
+    "Bug fixes and small polish."
+  ],
+  "releasedAt": "2026-05-15"
+}

@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Plink</title>
+    <link rel="icon" href="plink.png">
+    <script src="plink-user.js?v=20260515-10"></script>
+    <script src="plink-update.js?v=20260515-10"></script>
+    <link rel="stylesheet" href="styles.css?v=20260515-10">
+  </head>
+  <body>
+    <div class="app" id="app">
+      <main class="shell">
+        <header class="topbar">
+          <div class="topbar-left">
+            <div class="brand" data-tour-target="brand">
+              <div class="brand-mark" aria-hidden="true">
+                <img src="plink.png" alt="">
+              </div>
+              <div class="brand-copy">
+                <strong>Plink</strong>
+                <span>Find your flow.</span>
+              </div>
+            </div>
+            <div class="title-block">
+              <p class="eyebrow" id="todayLabel"></p>
+              <h1 id="viewTitle">Dashboard</h1>
+            </div>
+          </div>
+          <nav class="nav" id="primaryNav" aria-label="Primary navigation">
+            <button class="nav-item is-active" data-view="dashboard" type="button">
+              <span data-icon="layout-dashboard"></span>
+              <span>Dashboard</span>
+            </button>
+            <button class="nav-item" data-view="courses" type="button">
+              <span data-icon="book-open"></span>
+              <span>Courses</span>
+            </button>
+            <button class="nav-item" data-view="calendar" type="button">
+              <span data-icon="calendar-days"></span>
+              <span>Calendar</span>
+            </button>
+            
+          </nav>
+          <div class="topbar-actions">
+            <button class="icon-button" id="updateCheckButton" title="Check for updates" aria-label="Check for updates" type="button">
+              <span data-icon="refresh"></span>
+            </button>
+            <button class="icon-button" id="tourReplayButton" title="Replay tutorial" aria-label="Replay tutorial" type="button">
+              <span data-icon="lightbulb"></span>
+            </button>
+            <button class="icon-button" id="themeToggleButton" title="Toggle theme" aria-label="Toggle theme" type="button">
+              <span data-icon="moon"></span>
+            </button>
+            <button class="icon-button" id="soundToggleButton" title="Toggle sound" aria-label="Toggle sound" type="button">
+              <span data-icon="volume-2"></span>
+            </button>
+            <div class="add-menu" id="universalAdd" data-tour-target="add">
+              <button class="primary icon-text" id="universalAddButton" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="universalAddMenu">
+                <span data-icon="plus"></span>
+                <span>Add</span>
+              </button>
+              <div class="add-menu-panel" id="universalAddMenu" role="menu" hidden></div>
+            </div>
+          </div>
+        </header>
+
+        <section class="view" id="viewRoot" aria-live="polite"></section>
+      </main>
+    </div>
+
+    <dialog class="modal" id="courseDialog">
+      <form method="dialog" id="courseForm">
+        <header class="modal-head">
+          <h2 id="courseDialogTitle">Course</h2>
+          <button class="icon-button" value="cancel" aria-label="Close course editor" type="submit" formnovalidate>
+            <span data-icon="x"></span>
+          </button>
+        </header>
+        <input type="hidden" id="courseId">
+        <div class="form-grid">
+          <label>
+            <span>Name</span>
+            <input id="courseName" required autocomplete="off">
+          </label>
+            <label>
+            <span>Instructor</span>
+            <input id="courseInstructor" autocomplete="off">
+          <label>
+            <span>Color</span>
+            <input id="courseColor" type="color" value="#1f9d8a">
+          </label>
+        </div>
+        <footer class="modal-actions">
+          <button class="danger ghost" id="deleteCourseButton" type="button">Delete</button>
+          <span></span>
+          <button class="secondary" value="cancel" type="submit" formnovalidate>Cancel</button>
+          <button class="primary" id="saveCourseButton" value="default" type="submit">Save</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="modal wide" id="assignmentDialog">
+      <form method="dialog" id="assignmentForm">
+        <header class="modal-head">
+          <h2 id="assignmentDialogTitle">Assignment</h2>
+          <button class="icon-button" value="cancel" aria-label="Close assignment editor" type="submit" formnovalidate>
+            <span data-icon="x"></span>
+          </button>
+        </header>
+        <input type="hidden" id="assignmentId">
+        <div class="form-grid">
+          <label>
+            <span>Course</span>
+            <select id="assignmentCourse" required></select>
+          </label>
+          <label>
+            <span>Type</span>
+            <select id="assignmentType">
+              <option value="homework">Homework</option>
+              <option value="quiz">Quiz</option>
+              <option value="exam">Exam</option>
+              <option value="essay">Essay</option>
+              <option value="project">Project</option>
+              <option value="reading">Reading</option>
+              <option value="video">Video</option>
+              <option value="discussion">Discussion</option>
+              <option value="reminder">Reminder</option>
+              <option value="goal">Goal</option>
+            </select>
+          </label>
+          <label class="span-2">
+            <span>Title</span>
+            <input id="assignmentTitle" required autocomplete="off">
+          </label>
+          <label>
+            <span>Due</span>
+            <div class="date-time-pair">
+              <input id="assignmentDueDate" type="date">
+              <input id="assignmentDueTime" type="time">
+            </div>
+          </label>
+          <label>
+            <span>Status</span>
+            <select id="assignmentStatus">
+              <option value="not-started">Not started</option>
+              <option value="working">Working</option>
+              <option value="submitted">Submitted</option>
+              <option value="read">Read</option>
+              <option value="completed">Completed</option>
+            </select>
+          </label>
+          <label>
+            <span>Estimated hours</span>
+            <input id="assignmentHours" type="number" min="0" step="0.25" placeholder="1.5">
+          </label>
+          <label>
+            <span>Priority</span>
+            <select id="assignmentPriority">
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+              <option value="critical">Critical</option>
+              <option value="low">Low</option>
+            </select>
+          </label>
+          <label class="span-2">
+            <span>Notes</span>
+            <textarea id="assignmentNotes" rows="4"></textarea>
+          </label>
+        </div>
+        <footer class="modal-actions">
+          <button class="danger ghost" id="deleteAssignmentButton" type="button">Delete</button>
+          <span></span>
+          <button class="secondary" value="cancel" type="submit" formnovalidate>Cancel</button>
+          <button class="primary" id="saveAssignmentButton" value="default" type="submit">Save</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="modal" id="sessionDialog">
+      <form method="dialog" id="sessionForm">
+        <header class="modal-head">
+          <h2 id="sessionDialogTitle">Study Session</h2>
+          <button class="icon-button" value="cancel" aria-label="Close session editor" type="submit" formnovalidate>
+            <span data-icon="x"></span>
+          </button>
+        </header>
+        <input type="hidden" id="sessionId">
+        <div class="form-grid">
+          <label>
+            <span>Course</span>
+            <select id="sessionCourse" required></select>
+          </label>
+          <label>
+            <span>Assignment</span>
+            <select id="sessionAssignment"></select>
+          </label>
+          <label class="span-2">
+            <span>Title</span>
+            <input id="sessionTitle" required autocomplete="off">
+          </label>
+          <label>
+            <span>Start</span>
+            <input id="sessionStart" type="datetime-local" required>
+          </label>
+          <label>
+            <span>Minutes</span>
+            <input id="sessionMinutes" type="number" min="15" step="15" value="60">
+          </label>
+          <label class="checkline span-2">
+            <input id="sessionCompleted" type="checkbox">
+            <span>Completed</span>
+          </label>
+        </div>
+        <footer class="modal-actions">
+          <button class="danger ghost" id="deleteSessionButton" type="button">Delete</button>
+          <span></span>
+          <button class="secondary" value="cancel" type="submit" formnovalidate>Cancel</button>
+          <button class="primary" id="saveSessionButton" value="default" type="submit">Save</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="modal wide" id="dueItemsDialog">
+      <form method="dialog">
+        <header class="modal-head">
+          <h2>Due in 7 days</h2>
+          <button class="icon-button" value="cancel" aria-label="Close due items" type="submit">
+            <span data-icon="x"></span>
+          </button>
+        </header>
+        <div class="panel-body assignment-list" id="dueItemsBody"></div>
+        <footer class="modal-actions">
+          <span></span>
+          <span></span>
+          <button class="secondary" value="cancel" type="submit">Close</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog class="modal update-modal" id="updateDialog">
+      <form method="dialog">
+        <header class="modal-head">
+          <h2 id="updateDialogTitle">Updates</h2>
+          <button class="icon-button" value="cancel" aria-label="Close update dialog" type="submit" formnovalidate>
+            <span data-icon="x"></span>
+          </button>
+        </header>
+        <div class="update-body" id="updateDialogBody"></div>
+        <footer class="modal-actions">
+          <span class="update-version-line" id="updateVersionLine"></span>
+          <button class="secondary" id="updateCheckAgainButton" type="button">Check again</button>
+          <button class="primary" id="updateDownloadButton" type="button" hidden>Download update</button>
+          <button class="secondary" value="cancel" type="submit">Close</button>
+        </footer>
+      </form>
+    </dialog>
+
+<dialog class="modal confirm-modal" id="confirmDialog">
+  <form method="dialog" id="confirmForm">
+    <header class="modal-head">
+      <h2 id="confirmTitle">Are you sure?</h2>
+      <button class="icon-button" value="cancel" aria-label="Close confirmation" type="submit" formnovalidate>
+        <span data-icon="x"></span>
+      </button>
+    </header>
+    <div class="confirm-body">
+      <p id="confirmMessage">This action cannot be undone.</p>
+    </div>
+    <footer class="modal-actions">
+      <span></span>
+      <span></span>
+      <button class="secondary" value="cancel" type="submit" formnovalidate>Cancel</button>
+      <button class="primary" id="confirmActionButton" value="confirm" type="submit">Delete</button>
+    </footer>
+  </form>
+</dialog>
+
+<div class="tour-overlay" id="tourOverlay" hidden>
+  <div class="tour-spotlight" id="tourSpotlight" aria-hidden="true" hidden></div>
+  <div class="tour-card" id="tourCard">
+    <div class="tour-step" id="tourStep">
+      1 of 4
+    </div>
+
+    <h2 id="tourTitle">
+      Welcome to Plink
+    </h2>
+
+    <p id="tourText">
+      Find your flow, one thing at a time.
+    </p>
+
+    <div class="tour-actions">
+      <button
+        class="ghost"
+        id="tourSkipButton"
+        type="button"
+      >
+        Skip
+      </button>
+
+      <button
+        class="primary"
+        id="tourNextButton"
+        type="button"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>
+
+    <div class="toast-host" id="toastHost" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="app.js?v=20260515-10" defer></script>
+  </body>
+</html>
