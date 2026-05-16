@@ -1,0 +1,11 @@
+{
+  "version": "0.2.0",
+  "downloadUrl": "https://github.com/poesaidun/Plink/releases/latest/download/PlinkInstaller.exe",
+  "notes": [
+    "iPhone-ready PWA shell.",
+    "Offline app loading for hosted installs.",
+    "Mobile layout polish.",
+    "Phase 1 update checking."
+  ],
+  "releasedAt": "2026-05-15"
+}
