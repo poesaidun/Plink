@@ -13,6 +13,8 @@ copy /Y "%~dp0app.js" "%APPDIR%\app.js" >nul
 copy /Y "%~dp0plink.png" "%APPDIR%\plink.png" >nul
 copy /Y "%~dp0plink-user.js" "%APPDIR%\plink-user.js" >nul
 copy /Y "%~dp0plink-update.js" "%APPDIR%\plink-update.js" >nul
+copy /Y "%~dp0manifest.json" "%APPDIR%\manifest.json" >nul
+copy /Y "%~dp0service-worker.js" "%APPDIR%\service-worker.js" >nul
 copy /Y "%~dp0README.md" "%APPDIR%\README.md" >nul
 copy /Y "%~dp0StartSchoolPlanner.vbs" "%APPDIR%\StartSchoolPlanner.vbs" >nul
 

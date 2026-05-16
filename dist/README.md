@@ -12,6 +12,7 @@ It helps you track courses, assignments, exams, reminders, goals, readings, vide
 - Gives you a calendar month view for planning when work actually happens.
 - Lets you mark work as submitted, read, completed, or done so finished items politely leave the stage.
 - Includes a guided tutorial, because mystery buttons are only fun in escape rooms.
+- Behaves like an installable mobile web app when hosted online and added to an iPhone Home Screen.
 
 ## Running Plink
 
@@ -37,6 +38,20 @@ dist\PlinkInstaller.exe
 
 The installer places Plink in your local app data folder and creates a Desktop shortcut.
 
+## iPhone And PWA Mode
+
+Plink is now PWA-ready. When hosted from a public HTTPS URL, iPhone users can open Plink in Safari, tap Share, choose Add to Home Screen, and launch it like a tiny app-shaped academic conscience.
+
+The mobile shell uses:
+
+- `manifest.json` for app name, icon, theme color, and standalone display.
+- iOS web app meta tags for Home Screen behavior.
+- `service-worker.js` for offline app-shell loading when Plink is hosted over HTTPS or localhost.
+- Safe-area spacing for iPhone notches and home indicators.
+- Touch-friendly buttons, mobile modals, and compact calendar cells.
+
+The Windows `.exe` still works the same way. The iPhone version is for a hosted copy of Plink, not the Windows installer. Phones are powerful, but they remain deeply unimpressed by `.exe` files.
+
 ## Publishing Updates
 
 Plink has a Phase 1 update checker. That means it can look online, see that a newer version exists, and send the user to your new installer. It will not silently replace files while anyone is mid-homework spiral.
@@ -53,11 +68,12 @@ The manifest should look like this:
 
 ```json
 {
-  "version": "0.1.1",
+  "version": "0.2.1",
   "downloadUrl": "https://example.com/PlinkInstaller.exe",
   "notes": [
-    "New guided tutorial highlights.",
-    "Bug fixes and small polish."
+    "iPhone-ready PWA shell.",
+    "Offline app loading for hosted installs.",
+    "Mobile layout polish."
   ],
   "releasedAt": "2026-05-15"
 }

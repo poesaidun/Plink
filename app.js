@@ -168,6 +168,7 @@ createAddMenuComponent({
   onSelect: handleUniversalAdd,
 });
 render();
+registerPlinkServiceWorker();
 
 function loadState() {
   const base = {
@@ -3306,6 +3307,14 @@ function icon(name, className = "icon") {
 function hydrateIcons(root) {
   root.querySelectorAll("[data-icon]").forEach((el) => {
     el.innerHTML = icon(el.dataset.icon);
+  });
+}
+
+function registerPlinkServiceWorker() {
+  if (!("serviceWorker" in navigator)) return;
+  if (!["http:", "https:"].includes(window.location.protocol)) return;
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("service-worker.js").catch(() => {});
   });
 }
 

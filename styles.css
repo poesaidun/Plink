@@ -52,6 +52,12 @@ body {
   overflow-x: hidden;
 }
 
+html {
+  background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
   background:
@@ -59,6 +65,8 @@ body {
     linear-gradient(315deg, color-mix(in srgb, var(--plink-pink) 6%, transparent), transparent 38%),
     var(--bg);
   color: var(--ink);
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button,
@@ -70,6 +78,7 @@ textarea {
 
 button {
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .app {
@@ -1191,6 +1200,12 @@ button.stat:hover {
   resize: vertical;
 }
 
+.date-time-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 132px;
+  gap: 8px;
+}
+
 .syllabus-form .span-3 {
   grid-column: 1 / -1;
 }
@@ -1281,6 +1296,7 @@ button.stat:hover {
 
 .modal {
   width: min(700px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
   border: 1px solid color-mix(in srgb, var(--line) 80%, var(--plink-violet));
   border-radius: 22px;
   background:
@@ -1296,6 +1312,20 @@ button.stat:hover {
   backdrop-filter: blur(18px);
   padding: 0;
   overflow: hidden;
+}
+
+.modal > form {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  max-height: inherit;
+}
+
+.modal .form-grid,
+.modal .panel-body,
+.update-body,
+.confirm-body {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .tour-overlay {
@@ -1868,5 +1898,372 @@ button.stat:hover {
 
   .modal-actions button {
     width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .shell {
+    width: 100%;
+    padding:
+      max(12px, env(safe-area-inset-top))
+      max(12px, env(safe-area-inset-right))
+      calc(20px + env(safe-area-inset-bottom))
+      max(12px, env(safe-area-inset-left));
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    margin:
+      calc(-1 * max(12px, env(safe-area-inset-top)))
+      calc(-1 * max(12px, env(safe-area-inset-right)))
+      14px
+      calc(-1 * max(12px, env(safe-area-inset-left)));
+    padding:
+      calc(10px + env(safe-area-inset-top))
+      max(12px, env(safe-area-inset-right))
+      12px
+      max(12px, env(safe-area-inset-left));
+    border-bottom: 1px solid color-mix(in srgb, var(--line) 78%, transparent);
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--plink-blue) 6%, transparent), transparent 46%),
+      color-mix(in srgb, var(--bg) 90%, var(--surface));
+    backdrop-filter: blur(18px);
+  }
+
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand-copy strong {
+    font-size: 0.98rem;
+  }
+
+  .brand-copy span,
+  .eyebrow {
+    font-size: 0.76rem;
+  }
+
+  h1 {
+    font-size: 1.42rem;
+  }
+
+  .nav {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    border-radius: 18px;
+  }
+
+  .nav-item {
+    min-height: 44px;
+    min-width: 0;
+    padding: 8px 6px;
+  }
+
+  .topbar-actions {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(42px, 1fr)) minmax(92px, 1.45fr);
+    width: 100%;
+    gap: 8px;
+  }
+
+  .topbar-actions > .icon-button,
+  .topbar-actions > .add-menu,
+  .topbar-actions > .add-menu > .primary {
+    width: 100%;
+  }
+
+  .primary,
+  .secondary,
+  .ghost,
+  .icon-button {
+    min-height: 44px;
+  }
+
+  .add-menu-panel {
+    left: auto;
+    right: 0;
+    width: min(340px, calc(100vw - 24px));
+    max-height: min(520px, calc(100dvh - 170px));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .add-menu-option {
+    min-height: 54px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat {
+    min-height: 82px;
+    padding: 13px;
+  }
+
+  .stat strong {
+    font-size: 1.42rem;
+  }
+
+  .layout-grid,
+  .course-grid {
+    gap: 14px;
+  }
+
+  .panel-head {
+    padding: 14px 14px 9px;
+  }
+
+  .panel-body {
+    padding: 0 14px 14px;
+  }
+
+  .assignment-main,
+  .session-main,
+  .canvas-main,
+  .import-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .assignment-title,
+  .session-title,
+  .canvas-title,
+  .import-title {
+    align-items: flex-start;
+  }
+
+  .today-item {
+    grid-template-columns: 1fr;
+  }
+
+  .today-time {
+    justify-self: start;
+    min-height: 32px;
+    padding: 0 10px;
+  }
+
+  .sticky-note {
+    min-height: 210px;
+    padding: 22px 18px;
+    transform: none;
+  }
+
+  .sticky-note-input {
+    min-height: 145px;
+  }
+
+  .toolbar,
+  .toolbar-group,
+  .calendar-toolbar {
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .toolbar > .primary,
+  .toolbar-group > .secondary,
+  .toolbar-group > .primary {
+    flex: 1 1 auto;
+  }
+
+  .calendar-month-title {
+    flex: 1 1 100%;
+    min-width: 0;
+    padding-top: 4px;
+  }
+
+  .month-calendar {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    overflow: hidden;
+  }
+
+  .month-weekday {
+    padding: 8px 3px;
+    text-align: center;
+    font-size: 0.66rem;
+  }
+
+  .day-column {
+    min-height: 92px;
+    padding: 6px 4px;
+  }
+
+  .day-head {
+    gap: 4px;
+    margin-bottom: 5px;
+  }
+
+  .day-head .icon-button {
+    width: 28px;
+    min-height: 28px;
+  }
+
+  .day-head strong {
+    font-size: 0.86rem;
+  }
+
+  .day-head span {
+    min-height: 1em;
+    font-size: 0.66rem;
+  }
+
+  .calendar-item {
+    min-height: 0;
+    padding: 4px 5px;
+    margin-bottom: 4px;
+    font-size: 0.68rem;
+  }
+
+  .calendar-item .pill,
+  .calendar-item .meta {
+    display: none;
+  }
+
+  .calendar-item button {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .modal {
+    width: min(100vw - 16px, 700px);
+    max-height: calc(100dvh - 16px);
+    border-radius: 18px;
+  }
+
+  .modal-head,
+  .modal-actions {
+    padding: 14px;
+  }
+
+  .form-grid {
+    gap: 13px;
+    padding: 16px;
+  }
+
+  .modal input,
+  .modal select,
+  .modal textarea {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .date-time-pair {
+    grid-template-columns: 1fr;
+  }
+
+  .update-modal .modal-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .update-version-line {
+    display: block;
+  }
+
+  .tour-card {
+    width: min(420px, calc(100vw - 24px));
+    padding: 22px;
+  }
+
+  .toast-host {
+    top: calc(12px + env(safe-area-inset-top));
+    width: min(420px, calc(100vw - 24px));
+  }
+}
+
+@media (max-width: 420px) {
+  .topbar-left {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .title-block {
+    display: none;
+  }
+
+  .topbar-actions {
+    grid-template-columns: repeat(4, minmax(40px, 1fr)) minmax(78px, 1.2fr);
+  }
+
+  .nav-item {
+    gap: 5px;
+  }
+
+  .nav-item span:last-child {
+    font-size: 0.7rem;
+  }
+
+  .stats-grid {
+    gap: 8px;
+  }
+
+  .stat {
+    min-height: 76px;
+  }
+
+  .stat strong {
+    font-size: 1.25rem;
+  }
+
+  .plink-hero {
+    padding: 14px;
+  }
+
+  .plink-signal {
+    width: 58px;
+    height: 58px;
+  }
+
+  .course-card {
+    padding: 14px;
+  }
+
+  .course-head {
+    align-items: flex-start;
+  }
+
+  .course-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .metric {
+    min-height: 58px;
+    padding: 8px 6px;
+  }
+
+  .metric span {
+    font-size: 0.68rem;
+  }
+
+  .month-weekday {
+    font-size: 0.6rem;
+  }
+
+  .day-column {
+    min-height: 82px;
+    padding: 5px 3px;
+  }
+
+  .day-head .icon-button {
+    display: none;
+  }
+
+  .calendar-item {
+    border-left-width: 2px;
+    padding: 3px 4px;
+  }
+
+  .modal {
+    width: 100vw;
+    max-width: 100vw;
+    max-height: 100dvh;
+    min-height: 100dvh;
+    border-width: 0;
+    border-radius: 0;
   }
 }

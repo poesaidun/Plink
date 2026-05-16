@@ -2,12 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#161b1d">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Plink">
     <title>Plink</title>
     <link rel="icon" href="plink.png">
-    <script src="plink-user.js?v=20260515-10"></script>
-    <script src="plink-update.js?v=20260515-10"></script>
-    <link rel="stylesheet" href="styles.css?v=20260515-10">
+    <link rel="apple-touch-icon" href="plink.png">
+    <link rel="manifest" href="manifest.json?v=20260515-11">
+    <script src="plink-user.js?v=20260515-11"></script>
+    <script src="plink-update.js?v=20260515-11"></script>
+    <link rel="stylesheet" href="styles.css?v=20260515-11">
   </head>
   <body>
     <div class="app" id="app">
@@ -87,6 +94,7 @@
             <label>
             <span>Instructor</span>
             <input id="courseInstructor" autocomplete="off">
+          </label>
           <label>
             <span>Color</span>
             <input id="courseColor" type="color" value="#1f9d8a">
@@ -314,6 +322,6 @@
 
     <div class="toast-host" id="toastHost" aria-live="polite" aria-atomic="true"></div>
 
-    <script src="app.js?v=20260515-10" defer></script>
+    <script src="app.js?v=20260515-11" defer></script>
   </body>
 </html>

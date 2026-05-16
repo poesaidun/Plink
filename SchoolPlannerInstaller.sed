@@ -40,7 +40,9 @@ FILE4="app.js"
 FILE5="plink.png"
 FILE6="plink-user.js"
 FILE7="plink-update.js"
-FILE8="README.md"
+FILE8="manifest.json"
+FILE9="service-worker.js"
+FILE10="README.md"
 
 [SourceFiles]
 SourceFiles0=C:\Users\Tyler\OneDrive\DOCUME~1\NEWPRO~1\SCHOOL~1\
@@ -55,3 +57,5 @@ SourceFiles0=C:\Users\Tyler\OneDrive\DOCUME~1\NEWPRO~1\SCHOOL~1\
 %FILE6%=
 %FILE7%=
 %FILE8%=
+%FILE9%=
+%FILE10%=

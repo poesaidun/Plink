@@ -1,0 +1,29 @@
+{
+  "id": "./",
+  "name": "Plink - School Planner",
+  "short_name": "Plink",
+  "description": "A calm school planner for courses, deadlines, study sessions, and tiny next moves.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#161b1d",
+  "theme_color": "#161b1d",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "plink.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Open Dashboard",
+      "short_name": "Dashboard",
+      "url": "./index.html"
+    }
+  ]
+}

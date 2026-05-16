@@ -1,10 +1,10 @@
 {
-  "version": "0.1.1",
+  "version": "0.2.1",
   "downloadUrl": "https://example.com/PlinkInstaller.exe",
   "notes": [
-    "New guided tutorial highlights.",
-    "A calmer update checker.",
-    "Bug fixes and small polish."
+    "iPhone-ready PWA shell.",
+    "Offline app loading for hosted installs.",
+    "Mobile layout polish."
   ],
   "releasedAt": "2026-05-15"
 }
