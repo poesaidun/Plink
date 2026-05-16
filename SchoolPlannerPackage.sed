@@ -42,6 +42,7 @@ FILE6="plink-update.js"
 FILE7="manifest.json"
 FILE8="service-worker.js"
 FILE9="README.md"
+FILE10="MOBILE_TESTING.md"
 
 [SourceFiles]
 SourceFiles0=C:\Users\Tyler\OneDrive\DOCUME~1\NEWPRO~1\SCHOOL~1\
@@ -57,3 +58,4 @@ SourceFiles0=C:\Users\Tyler\OneDrive\DOCUME~1\NEWPRO~1\SCHOOL~1\
 %FILE7%=
 %FILE8%=
 %FILE9%=
+%FILE10%=

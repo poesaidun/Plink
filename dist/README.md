@@ -52,6 +52,8 @@ The mobile shell uses:
 
 The Windows `.exe` still works the same way. The iPhone version is for a hosted copy of Plink, not the Windows installer. Phones are powerful, but they remain deeply unimpressed by `.exe` files.
 
+For the PC and iPhone test checklist, see `MOBILE_TESTING.md`.
+
 ## Publishing Updates
 
 Plink has a Phase 1 update checker. That means it can look online, see that a newer version exists, and send the user to your new installer. It will not silently replace files while anyone is mid-homework spiral.

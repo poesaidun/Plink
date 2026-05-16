@@ -16,6 +16,7 @@ copy /Y "%~dp0plink-update.js" "%APPDIR%\plink-update.js" >nul
 copy /Y "%~dp0manifest.json" "%APPDIR%\manifest.json" >nul
 copy /Y "%~dp0service-worker.js" "%APPDIR%\service-worker.js" >nul
 copy /Y "%~dp0README.md" "%APPDIR%\README.md" >nul
+copy /Y "%~dp0MOBILE_TESTING.md" "%APPDIR%\MOBILE_TESTING.md" >nul
 copy /Y "%~dp0StartSchoolPlanner.vbs" "%APPDIR%\StartSchoolPlanner.vbs" >nul
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "$appDir = Join-Path $env:LOCALAPPDATA 'SchoolPlanner'; $json = ConvertTo-Json -Compress @{ name = $env:USERNAME }; Set-Content -LiteralPath (Join-Path $appDir 'plink-user.js') -Value ('window.PLINK_USER = ' + $json + ';') -Encoding UTF8"
